@@ -2,7 +2,7 @@ from torch.utils.data import DataLoader
 import torch
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from src.datasets.preprocess import repairdata
+from src.datasets.preprocess import prepairdata
 from src.datasets.dataset import AlqacDataset
 from.src.utils import compute_metrics
 from src.model.model import BertModel
@@ -25,8 +25,8 @@ data = pd.read_csv("/kaggle/input/dataalqac/datasALQAC.csv")
 
 train_df, eval_df = train_test_split(data, test_size= 0.2, random_state =42)
 
-train_sen1, train_sen2, train_labels = repairdata(train_df)
-val_sen1, val_sen2, val_labels = repairdata(eval_df)
+train_sen1, train_sen2, train_labels = prepairdata(train_df)
+val_sen1, val_sen2, val_labels = prepairdata(eval_df)
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased')
 
