@@ -7,7 +7,9 @@ from src.datasets.dataset import AlqacDataset
 from.src.utils import compute_metrics
 from src.model.model import BertModel
 from transformers import BertTokenizer, BertForSequenceClassification, TrainingArguments, Trainer
+from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
 import json
+import numpy as np # linear algebra
 
 with open('./data/ALQAC_2023_training_data/public_test.json', 'r') as file:
     # Load the contents of the file
@@ -40,6 +42,14 @@ val_data = AlqacDataset(val_inputs)
 
 model = BertForSequenceClassification.from_pretrained('bert-base-multilingual-cased')
 
+def compute_metrics(p):    
+    pred, labels = p
+    pred = np.argmax(pred, axis=1)
+    accuracy = accuracy_score(y_true=labels, y_pred=pred)
+    recall = recall_score(y_true=labels, y_pred=pred,average='weighted')
+    precision = precision_score(y_true=labels, y_pred=pred,average='weighted')
+    f1 = f1_score(y_true=labels, y_pred=pred,average='weighted')
+    return {"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1} 
 
 training_args = TrainingArguments(
     output_dir='./results',  # Directory where the model checkpoints and evaluation results will be stored
@@ -56,6 +66,6 @@ trainer = Trainer(
     args = training_args,
     train_dataset=train_data,
     eval_dataset=val_data,
-    compute_metrics=compute_metrics,
+    compute_metrics=compute_metrics(),
     tokenizer=tokenizer,
 )

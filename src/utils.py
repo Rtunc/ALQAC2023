@@ -16,12 +16,4 @@ def predict(model, encoded_inputs):
 
     # Lấy kết quả dự đoán
     return outputs
-def compute_metrics(p):    
-    pred, labels = p
-    pred = np.argmax(pred, axis=1)
-    accuracy = accuracy_score(y_true=labels, y_pred=pred)
-    recall = recall_score(y_true=labels, y_pred=pred,average='weighted')
-    precision = precision_score(y_true=labels, y_pred=pred,average='weighted')
-    f1 = f1_score(y_true=labels, y_pred=pred,average='weighted')
-    return {"accuracy": accuracy, "precision": precision, "recall": recall, "f1": f1} 
-# Define Trainer
+
