@@ -65,6 +65,6 @@ trainer = Trainer(
     args = training_args,
     train_dataset=train_data,
     eval_dataset=val_data,
-    compute_metrics=compute_metrics(),
+    compute_metrics=compute_metrics,
     tokenizer=tokenizer,
 )
