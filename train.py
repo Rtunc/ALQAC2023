@@ -21,7 +21,7 @@ with open('./data/ALQAC_2023_training_data/law.json', 'r') as file:
 with open('./data/savedata.json', 'r') as file:
     # Load the contents of the file
     public_test_data_preprocess = json.load(file)
-data = pd.read_csv("/kaggle/input/dataalqac/datasALQAC.csv")
+data = pd.read_csv("./data/datasALQAC.csv")
 
 
 train_df, eval_df = train_test_split(data, test_size= 0.2, random_state =42)
