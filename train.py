@@ -9,14 +9,15 @@ from src.model.model import BertModel
 from transformers import BertTokenizer, BertForSequenceClassification, TrainingArguments, Trainer
 import json
 
-with open(', 'r') as file:
+with open('./data/ALQAC_2023_training_data/public_test.json', 'r') as file:
     # Load the contents of the file
     public_test = json.load(file)
-with open('D:\Workspace\ALQAC2023\data\ALQAC_2023_training_data\law.json', 'r') as file:
+with open('./data/ALQAC_2023_training_data/law.json', 'r') as file:
+
     # Load the contents of the file
     law = json.load(file)
-    
-with open('D:\Workspace\ALQAC2023\data\savedata.json', 'r') as file:
+
+with open('./data/savedata.json', 'r') as file:
     # Load the contents of the file
     public_test_data_preprocess = json.load(file)
 data = pd.read_csv("/kaggle/input/dataalqac/datasALQAC.csv")
