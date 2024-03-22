@@ -4,7 +4,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from src.datasets.preprocess import prepairdata
 from src.datasets.dataset import AlqacDataset
-from.src.utils import compute_metrics
 from src.model.model import BertModel
 from transformers import BertTokenizer, BertForSequenceClassification, TrainingArguments, Trainer
 from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score
